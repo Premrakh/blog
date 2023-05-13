@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ <h2> Choose Your Favorite Subject  </h2> <hr><hr>
+ {% for i in sub_blog %}
+<a href="{% url 'subject' i.subject %}"><button type="button" class="btn btn-info">{{i.subject}}</button><a/> <br><br>
+{% endfor %}
+
+
+{% endblock %}

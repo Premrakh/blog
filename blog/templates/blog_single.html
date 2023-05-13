@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!--search overlay start-->
+    <div class="search-wrap">
+        <div class="overlay">
+            <form action="#" class="search-form">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 col-9">
+                            <input type="text" class="form-control" placeholder="Search..." />
+                        </div>
+                        <div class="col-md-2 col-3 text-right">
+                            <div class="search_toggle toggle-wrap d-inline-block">
+                                <i class="ti-close"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--search overlay end-->
+
+    <section class="single-block-wrapper section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                    <div class="single-post">
+                        {% if single_blog %}
+                        <div class="post-header mb-5 text-center">
+                            <div class="meta-cat">
+                                <a class="post-category font-extra text-color text-uppercase font-sm letter-spacing-1"
+                                    href="#">{{single_blog.subject}} ,</a>
+                              
+                            </div>
+                            <h2 class="post-title mt-2">
+                                {{single_blog.title}}
+                            </h2>
+
+                            <div class="post-meta">
+                                <span class="text-uppercase font-sm letter-spacing-1 mr-3">by Liam</span>
+                                <span class="text-uppercase font-sm letter-spacing-1">{{i.date}}</span>
+                                    
+                            </div>
+                            <div class="post-featured-image mt-5">
+                                <img src="{{single_blog.pic.url}}" class="img-fluid w-100" alt="featured-image">
+                            </div>
+                        </div>
+                        <div class="post-body">
+                            <div class="entry-content">
+                                <p> {{single_blog.details}}</p>
+                            </div>
+                            <div
+                                class="tags-share-box center-box d-flex text-center justify-content-between border-top border-bottom py-3">
+
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+
+        
+
+
+                    <div class="comment-area my-5">
+                        <h3 class="mb-4 text-center">{{count}} COMMENT</h3>
+                    
+
+                        <div class="comment-area-box media mt-5">
+                            {% for i in post_com %}
+                            <div class="media-body ml-4">
+                                <h4 class="mb-0 ">{{i.name}} </h4>
+                                <span class="date-comm font-sm text-capitalize text-color"><i
+                                        class="ti-time mr-2"></i>{{i.date}} </span>
+
+                                <div class="comment-content mt-3">
+                                    <p>{{i.comment}}</p>
+                                </div>
+                                {% comment %} <div class="comment-meta mt-4 mt-lg-0 mt-md-0">
+                                    <a href="#" class="text-underline">Reply</a>
+                                </div> {% endcomment %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <form action="{% url 'blog_single' single_blog.id %}" method='POST'>
+                        {% csrf_token %}
+                        
+                        <h3 class="mb-4 text-center">Leave a comment</h3>
+                        {{msg}}
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <textarea class="form-control mb-3" name="comment" cols="30" rows="5"
+                                    placeholder="Comment"></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="name" placeholder="Name:">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="email" placeholder="Email:">
+                                </div>
+                            </div>
+                        </div>
+
+                        <input class="btn btn-primary" type="submit" name="submit-contact" id="submit_contact"
+                            value="Submit Message">
+                    </form>
+
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                    <div class="sidebar sidebar-right">
+                        <div class="sidebar-wrap mt-5 mt-lg-0">
+                            <div class="sidebar-widget about mb-5 text-center p-3">
+                                <div class="about-author">
+                                    <img src="{% static 'images/self.jpg' %}" alt="" class="img-fluid">
+                                </div>
+                                
+                                <h4 class="mb-0 mt-4">Prem Rakh</h4>
+                                <p>Coder Blogger</p>
+                                <p>I'm  create this blog just for practising and gain my knowladge</p>
+                                  
+                            </div>
+
+                            <div class="sidebar-widget follow mb-5 text-center">
+                                <h4 class="text-center widget-title">Follow Me</h4>
+                                <div class="follow-socials">
+                                    <a href="https://www.instagram.com/prem_rakh_272/"><i class="ti-instagram"></i></a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--footer start-->
+{% endblock %}

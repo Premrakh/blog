@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!--search overlay start-->
+
+
+<div class="search-wrap">
+	<div class="overlay">
+		<form action="#" class="search-form">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-10 col-9">
+						<input type="text" class="form-control" placeholder="Search..." />
+					</div>
+					<div class="col-md-2 col-3 text-right">
+						<div class="search_toggle toggle-wrap d-inline-block">
+							<i class="ti-close"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<!--search overlay end-->
+
+<div class="breadcrumb-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="text-center">
+					<h2 class="lg-title">{{obj.subject}}</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div>
+<h2>{{msg}}</h2>
+	<section class="section-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+					<div class="row">
+						{% for i in filter_blog %}
+						<div class="col-lg-6 col-md-6">
+							<article class="post-grid mb-5">
+								<div class="post-thumb mb-4">
+									<img src="{{i.pic.url}}" alt="" class="img-fluid w-100">
+								</div>
+								<span
+									class="cat-name text-color font-extra text-sm text-uppercase letter-spacing-1">{{i.subject}}</span>
+								<h3 class="post-title mt-1"><a href="{% url 'blog_single' i.id %}">{{i.title}}</a></h3>
+
+								<span class=" text-muted  text-capitalize">{{i.date}}</span>
+
+							</article>
+						</div>
+						{% endfor %}
+						
+						
+					</div>
+					
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+					<div class="sidebar sidebar-right">
+						<div class="sidebar-wrap mt-5 mt-lg-0">
+
+
+
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	{% endblock %}
